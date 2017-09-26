@@ -10,6 +10,9 @@
 		if (bodyInner && bookBody) {
 			bookBody.scrollTop = 0;
 			bodyInner.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+			document.getElementsByTagName("body")[0].scrollTop = 0;
+			window.scrollTo(0, 0);
 		} else {
 			setTimeout(function() {
 				checkAndAdjust();
@@ -26,7 +29,7 @@
 		introElem.innerHTML = "React Best Practices";
 	}
 	document.title = "React Best Practices";
-	
+
 	var abtContainer = document.createElement("div");
 	abtContainer.id = "abtContainer_kc";
 	abtContainer.style.height = "362px";
