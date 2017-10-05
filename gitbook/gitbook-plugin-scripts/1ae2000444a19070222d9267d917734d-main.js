@@ -25,7 +25,7 @@
 	if (introElem) {
 		introElem.innerHTML = "React Best Practices";
 	}
-	document.title = "React Best Practices";
+	document.title = "React Best Practices - ashishkumarkc.com";
 	
 	var abtContainer = document.createElement("div");
 	abtContainer.id = "abtContainer_kc";
