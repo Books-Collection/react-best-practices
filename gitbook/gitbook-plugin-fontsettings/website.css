@@ -289,3 +289,9 @@
   background: #252737;
   font-weight: 600;
 }
+a[href*="codesandbox.io"] {
+    display: none;
+}
+img[src*="codesandbox.io"] {
+    display: none;
+}
