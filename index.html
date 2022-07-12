@@ -1,0 +1,1485 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>React Best Practices - ashishkumarkc.com</title>
+        <meta name="keywords" content="accessibility,adding,advanced,ajax,alternative,alternatives,amd,an,and,android,angular,app,application,applications,apps,architecture,array,as,avoid,axios,backend,basic,basics,beginners,benefits,best,bind,blog,boilerplate,book,browsers,build,builder,built,button,by,call,can,carousel,cases,cdn,children,class,classes,classname,classnames,cli,code,codecademy,codes,coding,comments,community,company,compiler,component,components,composition,conditional,connect,constructor,container,contracting,controls,conventions,course,create,crm,crud,css,current,dashboard,data,database,datagrid,datatable,declaring,default,demo,deployment,designer,designers,developer,developers,development,do,docs,documentation,dom,dropdown,dummies,ebook,editor,elements,else,email,end,environment,enzyme,es6,event,eventemitter,events,example,examples,explained,export,exporting,exports,express,facebook,features,file,flexbox,flux,for,force,foreach,form,forms,framework,framework7,frameworks,from,front,frontend,function,functional,functions,generator,get,getinitialstate,getting,good,graphs,grid,guidelines,handler,handlers,header,hello,hide,host,hosting,how,html,ide,ideas,if,import,imports,impot,in,inline,input,interface,introduction,io,isomorphic,j,java,javascript,js,json,jsx,keyword,language,large,latest,learn,libraries,library,lids,lifecycle,lightbox,link,list,loader,made,methods,min,mobile,model,models,module,mount,multiple,mvc,mysql,native,navigation,navigator,need,nested,node,not,object,of,official,on,onchange,onclick,online,oop,open,over,overview,page,pass,patterns,performance,php,place,post,practice,practices,prerequisites,presentation,production,program,programmers,programming,programs,project,projects,prop,props,proptypes,provider,pure,quick,rails,react,reaction,reactions,reactive,reactjs,reactor,receive,redux,ref,refs,render,rendering,request,require,rerender,resources,responsive,rest,reusable,router,sample,scratch,script,scroll,search,security,select,server,session,set,setstate,showcase,simple,single,site,sites,slider,small,source,spa,spinner,stack,standards,start,started,starter,starting,state,stateless,step,structure,style,styling,submit,super,support,supported,switch,table,tables,tasks,test,testing,the,timer,to,toggle,training,transformer,tree,tubs,tutorial,types,ui,understand,understanding,unit,unmount,update,use,used,user,uses,using,validation,value,version,video,viewer,way,we,web,webpack,webpage,website,websites,what,where,will,wills,window,windows,with,world,wrapper" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+
+
+
+
+    <link rel="stylesheet" href="gitbook/style.css">
+
+
+
+
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+
+
+
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+
+
+
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+
+
+
+
+
+
+
+
+        <link rel="stylesheet" href="styles/website.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+
+
+
+    </head>
+    <body>
+
+<div class="book">
+    <div class="book-summary">
+
+
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+
+                <nav role="navigation">
+
+
+
+<ul class="summary">
+
+
+
+
+
+
+
+
+
+        <li class="chapter active" data-level="1.1" data-path="./">
+
+                <a href="./">
+
+
+                    Introduction
+
+                </a>
+
+
+
+        </li>
+
+
+
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+
+
+    </div>
+
+    <div class="book-body">
+
+            <div class="body-inner">
+
+
+
+<div class="book-header" role="navigation">
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Introduction</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+
+<div id="book-search-results">
+    <div class="search-noresults">
+
+                                <section class="normal markdown-section">
+
+                                <h1 id="react-best-practices">React Best Practices</h1>
+<p>(Author <strong><a href="https://www.ashishkumarkc.com" target="_blank">K.C.Ashish Kumar</a></strong>)</p>
+<p>A collection of best practice guidelines for ReactJS.
+<!-- v1.0,2017-08-14 -->
+<!-- toc --></p>
+<h2 id="esnext">ESNext</h2>
+<p>You can make use of some useful ESNext features in your React code.</p>
+<h3 id="class-fields-and-static-properties">Class fields and static properties</h3>
+<p>Make your React classes more readable:</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { name: <span class="hljs-string">&quot;&quot;</span> };
+
+  onChangeName = e =&gt; {
+    <span class="hljs-keyword">this</span>.setState({ name: e.target.value });
+  }
+}
+</code></pre>
+<h3 id="component-class-skeleton">Component class skeleton</h3>
+<p>A typical component class using ESNext syntax looks like this:</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">static</span> propTypes = { ... };
+
+  <span class="hljs-keyword">static</span> defaultProps = { ... };
+
+  state = { ... };
+
+  onEvent = () =&gt; { ... };
+
+  classMethod() { ... }
+}
+</code></pre>
+<h2 id="prop-types">prop-types</h2>
+<p>Always declare your props. Simply install the <code>prop-types</code> module from npm:</p>
+<pre><code class="lang-bash">npm install --save prop-types
+</code></pre>
+<p>And then import the module into your component:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+</code></pre>
+<p>Using prop types ensures:</p>
+<ul>
+<li>Consumers of your component can see exactly what props are supported.</li>
+<li>Console warning are displayed when the wrong prop type is used.</li>
+<li>Props can be documented for use with <code>react-styleguidist</code>.</li>
+</ul>
+<h3 id="example-class-using-esnext-static-property-support">Example (class using ESNext static property support)</h3>
+<p>The following component supports two props: <code>onClick</code> which is a function and <code>name</code> which is a string and is a mandatory prop.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Greeting</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">static</span> propTypes = {
+    onClick: PropTypes.func,
+    name: PropTypes.string.isRequired
+  };
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.props.onClick}</span>&gt;</span>
+        Hello, {this.props.name}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<h3 id="example-stateless-functional-component">Example (stateless functional component)</h3>
+<p>When using a stateless functional component you need to declare prop types on the function object itself:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> Greeting = props =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{props.onClick}</span>&gt;</span>
+    Hello,{props.name}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
+
+Greeting.propTypes = {
+  onClick: PropTypes.func,
+  name: PropTypes.string.isRequired
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Greeting;
+</code></pre>
+<h3 id="use-destructuring-to-import-specific-prop-types">Use destructuring to import specific prop types</h3>
+<p>You can also use destructuring to import just the prop types you need. This can save typing, especially when using props of the same type.</p>
+<p>For example, here is the above stateless functional component example rewritten:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { func, string } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> Greeting = props =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{props.onClick}</span>&gt;</span>
+    Hello,{props.name}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
+
+Greeting.propTypes = {
+  onClick: func,
+  name: string.isRequired
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Greeting;
+</code></pre>
+<h3 id="using-object-shapes-and-arrays">Using object shapes and arrays</h3>
+<p>You can also specify the <em>shape</em> of an object prop or the shape of arrays.</p>
+<p>For example, the following component expects an array of objects.
+Each object requires <code>id</code> and <code>name</code> string properties.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { arrayOf, shape, string } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> Stores = ({ stores }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    {stores.map(store =&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{store.id}</span>&gt;</span>
+        {store.name}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    )}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>;
+
+Stores.propTypes = {
+  stores: arrayOf(
+    shape({
+      id: string.isRequired,
+      name: string.isRequired
+    })
+  )
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Stores;
+</code></pre>
+<h3 id="custom-prop-types-sharing-your-shapes">Custom prop types: sharing your shapes</h3>
+<p>You can easily share custom prop types by adding them to a file and exporting them for use in your project. For example:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// customProps.js</span>
+<span class="hljs-keyword">import</span> { string, shape } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> store = shape({
+  id: string.isRequired,
+  name: string.isRequired
+});
+
+<span class="hljs-comment">// Stores.js</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { arrayOf } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+<span class="hljs-keyword">import</span> { store } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./customProps.js&quot;</span>;
+
+<span class="hljs-keyword">const</span> Stores = ({ stores }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    {stores.map(store =&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{store.id}</span>&gt;</span>
+        {store.name}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    )}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>;
+
+Stores.propTypes = {
+  stores: arrayOf(stores).isRequired
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Stores;
+</code></pre>
+<h3 id="specifying-default-prop-values">Specifying default prop values</h3>
+<p>You can also declare default values for props by declaring the <code>defaultProps</code> object on the component class or function. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Heading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">static</span> propTypes = {
+    backgroundColor: PropTypes.string,
+    color: PropTypes.string,
+    children: PropTypes.node.isRequired
+  };
+
+  <span class="hljs-keyword">static</span> defaultProps = {
+    backgroundColor: <span class="hljs-string">&quot;black&quot;</span>,
+    color: <span class="hljs-string">&quot;white&quot;</span>
+  };
+
+  render() {
+    <span class="hljs-keyword">const</span> style = {
+      backgroundColor: <span class="hljs-keyword">this</span>.props.backgroundColor,
+      color: <span class="hljs-keyword">this</span>.props.color
+    };
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span>&gt;</span>
+        {this.props.children}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>This can be especially useful for <code>func</code> props as it stops a potential crash if an optional function prop is not supplied. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { func } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> Button = ({ onClick }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>&gt;</span>
+    Button
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+
+Button.propTypes = {
+  onClick: func
+};
+
+Button.defaultProps = {
+  onClick: () =&gt; {}
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Button;
+</code></pre>
+<h4 id="using-default-prop-values-in-stateless-functional-components">Using default prop values in stateless functional components</h4>
+<p>Rather than declaring <code>defaultProps</code> for stateless functional components, you can use a combination of <strong>destructuring</strong> and <strong>default parameter values</strong> instead. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { string, node } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> Heading = ({ children, backgroundColor = <span class="hljs-string">&quot;black&quot;</span>, color = <span class="hljs-string">&quot;white&quot;</span> }) =&gt; {
+  <span class="hljs-keyword">const</span> style = {
+    backgroundColor,
+    color
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span>&gt;</span>
+      {children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+  );
+};
+
+Heading.propTypes = {
+  backgroundColor: string,
+  color: string,
+  children: node.isRequired
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Heading;
+</code></pre>
+<h2 id="stateless-functional-components">Stateless Functional Components</h2>
+<p>Stateless functional components are React components as JavaScript functions. They can be used for components that do not use any lifecycle methods other than render and do not use any state.</p>
+<ul>
+<li>Concerned with <em>how things look</em>.</li>
+<li>AKA as <em>presentational</em> or <em>dumb</em> components.</li>
+<li>Functional programming paradigm: <strong>stateless function components are pure functions of their props</strong>.</li>
+<li>Props passed as the first function parameter.</li>
+<li>Simply return the component JSX: the same as the class <code>render</code> method.</li>
+<li>No state, no lifecycle methods.</li>
+<li>Easy to test.</li>
+<li>Easy to re-use/share.</li>
+<li>Make no assumptions about application state or the data source.</li>
+<li>Can be combined with container components (which may have state and may know about the data source).</li>
+</ul>
+<h3 id="example">Example</h3>
+<p>A simple greeting component: it displays a name and calls a prop when clicked.</p>
+<blockquote>
+<p>Note that ES6 arrow functions are preferred.</p>
+</blockquote>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { func, string } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> Greeting = ({ onClick, name }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>&gt;</span>
+    Hello, {name}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;
+
+Greeting.propTypes = {
+  onClick: func,
+  name: string.isRequired
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Greeting;
+</code></pre>
+<h3 id="simple-snapshot-testing">Simple snapshot testing</h3>
+<p>You can quickly test a simple component like this using <strong>snapshot testing</strong>. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> renderer <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-test-renderer&quot;</span>;
+<span class="hljs-keyword">import</span> Greeting <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../Greeting&quot;</span>;
+
+it(<span class="hljs-string">&quot;renders&quot;</span>, () =&gt; {
+  expect(renderer.create(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Greeting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;The name&quot;</span> /&gt;</span>)).toMatchSnapshot();
+});
+</span></code></pre>
+<h2 id="containers">Containers</h2>
+<p>Containers are combinations of <em>state</em> and <em>presentational components</em>.</p>
+<ul>
+<li>Concerned with <em>how things work</em>.</li>
+<li>Usually ES6 class components with state.</li>
+<li>Render Re-usable stateless functional components.</li>
+<li>Knowledge about the data source and/or the application state.</li>
+<li>Commonly used with <code>react-redux</code>.</li>
+<li>Often generated using <em>higher order components</em> (HOCs).</li>
+</ul>
+<h3 id="example">Example</h3>
+<p><a href="https://codesandbox.io/s/Nx1lY23K6" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Presentational and Container Components"></a></p>
+<p>Here is a simple presentational component that renders a styled IP address:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { string } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> styles = {
+  container: {
+    textAlign: <span class="hljs-string">&quot;center&quot;</span>
+  },
+  ip: {
+    fontFamily: <span class="hljs-string">&quot;sans-serif&quot;</span>,
+    fontSize: <span class="hljs-string">&quot;20px&quot;</span>,
+    fontWeight: <span class="hljs-string">&quot;bold&quot;</span>,
+    color: <span class="hljs-string">&quot;blue&quot;</span>
+  }
+};
+
+<span class="hljs-keyword">const</span> IPAddress = ({ ip }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.container}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.ip}</span>&gt;</span>
+      {ip}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+
+IPAddress.propTypes = {
+  ip: string
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> IPAddress;
+</code></pre>
+<p>And here is an example container for this component. The container knows about the data source (in this case how to fetch the current IP.)</p>
+<p>Notice the following characteristics:</p>
+<ul>
+<li>It is an ES6 class.</li>
+<li>It has state.</li>
+<li>It is using component lifecycle (<code>componentDidMount</code>).</li>
+<li>It is acting as a wrapper for the <code>IPAddress</code> component.</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> IPAddress <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./IPAddress&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IPAddressContainer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { ip: <span class="hljs-string">&quot;&quot;</span> };
+
+  componentDidMount() {
+    <span class="hljs-built_in">window</span>
+      .fetch(<span class="hljs-string">&quot;https://api.ipify.org?format=json&quot;</span>)
+      .then(response =&gt; response.json())
+      .then(response =&gt; {
+        <span class="hljs-keyword">this</span>.setState({ ip: response.ip });
+      });
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">IPAddress</span> <span class="hljs-attr">ip</span>=<span class="hljs-string">{this.state.ip}</span> /&gt;</span>;
+  }
+}
+</span></code></pre>
+<h2 id="higher-order-components">Higher Order Components</h2>
+<p>Higher Order Components (or HOCs) are used to transform a component into another component.</p>
+<p><a href="https://codesandbox.io/s/RBxmkgl0" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Higher Order Components"></a></p>
+<ul>
+<li>A HOC <strong>is a function that takes a component and returns a new component</strong>.</li>
+<li>Made possible due to the compositional nature of React.</li>
+<li>Often used to inject additional props into an existing component.</li>
+<li>Useful for creating containers.</li>
+<li>A popular example is the <code>react-redux</code> <code>connect</code> function.</li>
+<li>Can be used to re-use code, hijack the <code>render</code> method and to manipulate existing props.</li>
+</ul>
+<h3 id="example-ip-address">Example: IP address</h3>
+<p>The following HOC function will fetch the IP address and inject a prop called <code>ip</code> into <strong>any</strong> component. This is an example of using a <code>class</code> as the container.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">const</span> withIPAddress = Component =&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    state = { ip: <span class="hljs-string">&quot;&quot;</span> };
+
+    componentDidMount() {
+      <span class="hljs-built_in">window</span>
+        .fetch(<span class="hljs-string">&quot;https://api.ipify.org?format=json&quot;</span>)
+        .then(response =&gt; response.json())
+        .then(response =&gt; {
+          <span class="hljs-keyword">this</span>.setState({ ip: response.ip });
+        });
+    }
+
+    render() {
+      <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span> <span class="hljs-attr">ip</span>=<span class="hljs-string">{this.state.ip}</span> {<span class="hljs-attr">...this.props</span>} /&gt;</span>;
+    }
+  };
+};
+
+export default withIPAddress;
+</span></code></pre>
+<p>Notice what&apos;s happening here: we are exporting a function that accepts a component as a parameter and returns an ES6 class.</p>
+<p>To use this with an existing component we do something like this:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { string } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+<span class="hljs-keyword">import</span> withIPAddress <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./withIPAddress&quot;</span>;
+
+<span class="hljs-keyword">const</span> SimpleIPAddress = ({ ip, color = <span class="hljs-string">&quot;black&quot;</span> }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">color</span> }}&gt;</span>
+    {ip}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
+
+SimpleIPAddress.propTypes = {
+  ip: string
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withIPAddress(SimpleIPAddress);
+</code></pre>
+<p>We export the result of calling <code>withIPAddress</code>, passing in the component in which we want the <code>ip</code> prop injected.</p>
+<h3 id="example-language">Example: language</h3>
+<p>Here&apos;s another example of a HOC that injects the current browser language setting into any component as a prop called <code>language</code>. In this case we are using a stateless functional component as the container.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// withLanguage.js</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+
+<span class="hljs-keyword">const</span> withLanguage = Component =&gt; props =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span> {<span class="hljs-attr">...props</span>} <span class="hljs-attr">language</span>=<span class="hljs-string">{navigator.language}</span> /&gt;</span>;
+
+export default withLanguage;
+
+// MyComponent.js
+import React from &quot;react&quot;;
+import { string } from &quot;prop-types&quot;;
+import withLanguage from &quot;./withLanguage&quot;;
+
+const MyComponent = ({ language }) =&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    Browser language: {language}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+
+MyComponent.propTypes = {
+  language: string
+};
+
+export default withLanguage(MyComponent);
+</span></code></pre>
+<h3 id="chaining-hocs">Chaining HOCs</h3>
+<p>Note that you can also chain HOCs together to create a new component that combines them all. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { string } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+<span class="hljs-keyword">import</span> withLanguage <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./withLanguage&quot;</span>;
+<span class="hljs-keyword">import</span> withIPAddress <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./withIPAddress&quot;</span>;
+
+<span class="hljs-keyword">const</span> MyComponent = ({ language, ip }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      Browser language: {language}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      IP address: {ip}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+
+MyComponent.propTypes = {
+  language: string,
+  ip: string
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withLanguage(withIPAddress(MyComponent));
+</code></pre>
+<h2 id="functions-as-children">Functions as Children</h2>
+<p><a href="https://codesandbox.io/s/Q8DzMRVq" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Functions as children"></a></p>
+<p>An alternative pattern to HOCs is <strong>functions as children</strong> where you supply a function to call as the child of a container component: this is the equivalent of a <strong>render callback</strong>. Like HOCs you are decoupling your parent and child and it usually follows a similar pattern of a parent that has state you want to hide from the child.</p>
+<p>This has some advantages over traditional HOCs:</p>
+<ul>
+<li>It does not pollute the <code>props</code> namespace. HOCs have an implicit contract they impose on the inner components which can cause prop name collisions especially when combining them with other HOCs.</li>
+<li>You do not need to use a function to create the container: you use simple composition instead.</li>
+<li>Developers do not need to call an HOC function to create a new wrapped component which can simplify the code: they simply export their child components as normal.</li>
+</ul>
+<p>In order for this to work you need to use a function as the special <code>children</code> prop and have the outer container component call this function when rendering.</p>
+<p>For example, here is a component that exposes the browser language:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> { func } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>;
+
+<span class="hljs-keyword">const</span> Language = ({ children }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {children(navigator.language)}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+
+Language.propTypes = {
+  children: func,
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Language;
+</code></pre>
+<p>The component simply treats the <code>children</code> prop as a function and calls it. It can be used like this:</p>
+<pre><code class="lang-js">&lt;Language&gt;
+  {language =&gt;
+    &lt;p&gt;
+      Browser language: {language}
+    &lt;/p&gt;}
+&lt;/Language&gt;
+</code></pre>
+<p>The child node of <code>&lt;Language&gt;</code> is a function which returns the JSX to render.</p>
+<p>Now let&apos;s imagine a component that calls an API and uses state to store the status, response and error.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> { string, func } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;prop-types&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CallAPI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">static</span> propTypes = {
+    api: string,
+    children: func,
+  };
+
+  state = {
+    isFetching: <span class="hljs-literal">false</span>,
+    data: {},
+    error: <span class="hljs-string">&apos;&apos;</span>,
+  };
+
+  <span class="hljs-keyword">async</span> componentDidMount() {
+    <span class="hljs-keyword">this</span>.setState({ isFetching: <span class="hljs-literal">true</span> });
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> fetch(<span class="hljs-keyword">this</span>.props.api);
+      <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> response.json();
+      <span class="hljs-keyword">this</span>.setState({ isFetching: <span class="hljs-literal">false</span>, data });
+    } <span class="hljs-keyword">catch</span> ({ message }) {
+      <span class="hljs-keyword">this</span>.setState({ isFetching: <span class="hljs-literal">false</span>, error: message });
+    }
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        {this.props.children({ ...this.state })}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>The component makes an API call (specified with a prop) and maintains the state of the call. It renders by calling a function and passing through a copy of the state as an object.</p>
+<p>It could be used like this:</p>
+<pre><code class="lang-js">&lt;CallAPI api=&quot;https://api.ipify.org?format=json&quot;&gt;
+  {({ isFetching, data, error }) =&gt; {
+    if (isFetching) {
+      return &lt;p&gt;Loading...&lt;/p&gt;;
+    }
+    if (error) {
+      return &lt;p&gt;Error: {error}&lt;/p&gt;;
+    }
+    return &lt;p&gt;Data: {JSON.stringify(data)}&lt;/p&gt;;
+  }}
+&lt;/CallAPI&gt;
+</code></pre>
+<p>And of course you can render normal components in the callback, for example:</p>
+<pre><code class="lang-js">&lt;CallAPI api=<span class="hljs-string">&quot;https://api.ipify.org?format=json&quot;</span>&gt;
+{
+  props =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> {<span class="hljs-attr">...props</span>} /&gt;</span>
+}
+<span class="hljs-tag">&lt;/<span class="hljs-name">CallAPI</span>&gt;</span></span>
+</code></pre>
+<blockquote>
+<p>There is a caveat to using this pattern: they cannot be optimised by React because <strong>they change on every render</strong> (a new function is declared on every render cycle). This rules out using <code>shouldComponentUpdate</code> and <code>React.PureComponent</code> which may lead to performance issues. Use this pattern wisely.</p>
+</blockquote>
+<h2 id="events">Events</h2>
+<p>When using JavaScript DOM and <code>window</code> events we usually need <code>this</code> to point to our component instance.</p>
+<p>Spot the bug in this code:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindBug</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { toggled: <span class="hljs-literal">false</span> };
+
+  onClick(e) {
+    <span class="hljs-keyword">this</span>.setState({ toggled: !<span class="hljs-keyword">this</span>.state.toggled });
+  }
+
+  render() {
+    <span class="hljs-keyword">const</span> style = {
+      fontSize: <span class="hljs-string">&quot;36px&quot;</span>,
+      color: <span class="hljs-keyword">this</span>.state.toggled ? <span class="hljs-string">&quot;white&quot;</span> : <span class="hljs-string">&quot;black&quot;</span>,
+      backgroundColor: <span class="hljs-keyword">this</span>.state.toggled ? <span class="hljs-string">&quot;red&quot;</span> : <span class="hljs-string">&quot;yellow&quot;</span>
+    };
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.onClick}</span>&gt;</span>
+        Click me
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>When you click on the <code>&lt;div&gt;</code> the <code>onClick</code> function handler is called which then tries to call <code>this.setState</code>. But the handler has not bound <code>this</code> to the component instance and it ends up as <code>null</code> which causes the code to crash.</p>
+<h3 id="binding-events">Binding events</h3>
+<p><a href="https://codesandbox.io/s/gJ6nymBE9" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Event Binding"></a></p>
+<p>To make this work we need to bind the <code>onClick</code> function to <code>this</code>. There are two ways to do this:</p>
+<h4 id="esnext-property-initialize-syntax-recommended">ESNext property initialize syntax (recommended)</h4>
+<p>The most readable way to do this is via an ESNext property initializer in conjunction with an arrow function. Arrow functions declared in this way are bound to <code>this</code> automatically:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindClassMethod</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { toggled: <span class="hljs-literal">false</span> };
+
+  onClick = e =&gt; {
+    <span class="hljs-keyword">this</span>.setState({ toggled: !<span class="hljs-keyword">this</span>.state.toggled });
+  };
+
+  render() {
+    <span class="hljs-keyword">const</span> style = {
+      fontSize: <span class="hljs-string">&quot;36px&quot;</span>,
+      color: <span class="hljs-keyword">this</span>.state.toggled ? <span class="hljs-string">&quot;white&quot;</span> : <span class="hljs-string">&quot;black&quot;</span>,
+      backgroundColor: <span class="hljs-keyword">this</span>.state.toggled ? <span class="hljs-string">&quot;red&quot;</span> : <span class="hljs-string">&quot;yellow&quot;</span>
+    };
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.onClick}</span>&gt;</span>
+        Click me
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>Notice the syntax used here:</p>
+<pre><code class="lang-js">handlerName = (params) =&gt; { ... }
+</code></pre>
+<p>This is the best option: it is less code and even though this syntax is experimental it is used widely at Facebook.</p>
+<p>Here&apos;s another example: a component that uses <code>window.setInterval</code> to update a counter every second:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { counter: <span class="hljs-number">0</span> };
+
+  componentDidMount() {
+    <span class="hljs-keyword">this</span>.timerId = <span class="hljs-built_in">window</span>.setInterval(<span class="hljs-keyword">this</span>.onTimer, <span class="hljs-number">1000</span>);
+  }
+
+  componentWillUnmount() {
+    <span class="hljs-built_in">window</span>.clearInterval(<span class="hljs-keyword">this</span>.timerId);
+  }
+
+  onTimer = () =&gt; {
+    <span class="hljs-keyword">this</span>.setState(prevState =&gt; ({ counter: prevState.counter + <span class="hljs-number">1</span> }));
+  };
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+        Counter: {this.state.counter}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>Note the following:</p>
+<ul>
+<li>The timer ID is stored so it can be cleared when the component unmounts.</li>
+<li>The function version of <code>setState</code> is used.</li>
+</ul>
+<p>Alternatively you could use an inline arrow function: this will ensure <code>this</code> has the correct context:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { counter: <span class="hljs-number">0</span> };
+
+  componentDidMount() {
+    <span class="hljs-keyword">this</span>.timerId = <span class="hljs-built_in">window</span>.setInterval(() =&gt; {
+      <span class="hljs-keyword">this</span>.setState(prevState =&gt; ({ counter: prevState.counter + <span class="hljs-number">1</span> }));
+    }, <span class="hljs-number">1000</span>);
+  }
+
+  componentWillUnmount() {
+    <span class="hljs-built_in">window</span>.clearInterval(<span class="hljs-keyword">this</span>.timerId);
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+        Counter: {this.state.counter}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<h4 id="constructor-binding">Constructor binding</h4>
+<p>Another common way of binding is to add a constructor to your class and use <code>Function.prototype.bind</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BindConstructor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { toggled: <span class="hljs-literal">false</span> };
+
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>();
+    <span class="hljs-keyword">this</span>.onClick = <span class="hljs-keyword">this</span>.onClick.bind(<span class="hljs-keyword">this</span>);
+  }
+
+  onClick(e) {
+    <span class="hljs-keyword">this</span>.setState({ toggled: !<span class="hljs-keyword">this</span>.state.toggled });
+  }
+
+  render() {
+    <span class="hljs-keyword">const</span> style = {
+      fontSize: <span class="hljs-string">&quot;36px&quot;</span>,
+      color: <span class="hljs-keyword">this</span>.state.toggled ? <span class="hljs-string">&quot;white&quot;</span> : <span class="hljs-string">&quot;black&quot;</span>,
+      backgroundColor: <span class="hljs-keyword">this</span>.state.toggled ? <span class="hljs-string">&quot;red&quot;</span> : <span class="hljs-string">&quot;yellow&quot;</span>
+    };
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.onClick}</span>&gt;</span>
+        Click me
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>Although this method is not relying on any experimental syntax it suffers from the following issues:</p>
+<ul>
+<li>It requires you adding a constructor.</li>
+<li>You have to remember call <code>super</code> in the constructor before doing anything else.</li>
+<li>It is more code.</li>
+</ul>
+<h3 id="sharing-event-handlers">Sharing event handlers</h3>
+<p><a href="https://codesandbox.io/s/vgAwR1Pxn" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Shared Event Handlers"></a></p>
+<p>Sometimes it is useful to share the share event handlers for your components and there is a simple trick to do this using the DOM <code>name</code> attribute (which is exposed as a prop for most React components):</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DetailsForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = {
+    name: <span class="hljs-string">&quot;&quot;</span>,
+    email: <span class="hljs-string">&quot;&quot;</span>,
+    phone: <span class="hljs-string">&quot;&quot;</span>
+  }
+
+  onChange = e =&gt; {
+    <span class="hljs-keyword">this</span>.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;
+        &lt;input name=&quot;name&quot; value={this.state.name} onChange={this.onChange} /&gt;
+        &lt;input name=&quot;email&quot; value={this.state.email} onChange={this.onChange} /&gt;
+        &lt;input name=&quot;phone&quot; value={this.state.phone} onChange={this.onChange} /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<p>This takes advantage of the JavaScript <strong>computed property name syntax</strong> to update the state. Notice how the <code>name</code> prop for each <code>&lt;input&gt;</code> matches the corresponding state property: this allows us to share a single <code>onChange</code> handler with all three components.</p>
+<blockquote>
+<p>Although this looks like magic <strong>it&apos;s just JavaScript</strong>.</p>
+</blockquote>
+<h3 id="handling-the-enter-key-in-a-form">Handling the ENTER key in a form</h3>
+<p><a href="https://codesandbox.io/s/RnpV11EV" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Form ENTER key"></a></p>
+<p>If you want to let users press the ENTER key to submit a form then you will need to prevent the default <code>submit</code> behaviour of a HTML form. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  onSubmit = e =&gt; {
+    <span class="hljs-comment">// Don&apos;t actually submit!</span>
+    e.preventDefault();
+    <span class="hljs-comment">// Enter key was pressed</span>
+  };
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;form onSubmit={this.onSubmit}&gt;
+        &lt;input
+          name=&quot;username&quot;
+          value={this.state.value}
+          onChange={this.onChange}
+        /&gt;
+        &lt;input
+          name=&quot;password&quot;
+          type=&quot;password&quot;
+          value={this.state.password}
+          onChange={this.onChange}
+        /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Login&quot; /&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+</code></pre>
+<p>This looks pretty much like a standard HTML form: the presence of the <code>&lt;input type=&quot;submit&quot; /&gt;</code> ensures the ENTER key works but by calling <code>preventDefault</code> on the submit event you can handle it yourself without the application reloading.</p>
+<h2 id="conditional-rendering">Conditional Rendering</h2>
+<p>Sometimes it is useful to render components based on your props or state and there are at least five different mechanisms available to you (remember: it&apos;s just JavaScript!)</p>
+<p><a href="https://codesandbox.io/s/QgoRP307" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Conditional Rendering"></a></p>
+<blockquote>
+<p>Note that when you conditionally remove a component it <strong>will be re-mounted when you put it back</strong> which means <code>componentDidMount</code> and other lifecycle methods will be called again. So if you are, for example, fetching data when the component mounts, it will be called each time. To avoid this use some form of <code>show</code> prop and either return <code>null</code> from your <code>render</code> or use CSS to hide the content.</p>
+</blockquote>
+<h3 id="store-the-jsx-in-a-variable">Store the JSX in a variable</h3>
+<p>You can declare a variable to hold the JSX you wish to render. If your condition is not met and an <code>undefined</code> variable is rendered, then React will simply ignore it.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> message;
+<span class="hljs-keyword">if</span> (someCondition) {
+  message = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
+}
+
+<span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Conditional rendering<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    {message}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+)
+</code></pre>
+<h3 id="ternaries">Ternaries</h3>
+<p>You can also use a <strong>ternary</strong>. Using <code>null</code> or <code>undefined</code> is enough to stop anything being rendered:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Conditional rendering<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    {someCondition ? <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> : null}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+)
+</code></pre>
+<h3 id="logical--operator-shortcut">Logical &amp;&amp; operator shortcut</h3>
+<p>This relies on the fact the JavaScript will stop evaluating an &amp;&amp; condition if the preceding checks return <code>false</code>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Conditional rendering<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    {someCondition &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+)
+</code></pre>
+<p>So if <code>someCondition</code> is <code>true</code> then your JSX is rendered, but if it&apos;s <code>false</code> then your JSX will simply not be evaluated.</p>
+<p>This is a very common method to conditionally render something in React.</p>
+<h3 id="return-null-from-your-render-method">Return null from your render method</h3>
+<p>Another common pattern seen in some 3rd-party component libraries is to conditionally render a component based on a boolean prop. For example, you may have a prop called <code>show</code> that determines if the component should display at all: if not then your <code>render</code> method can simply return <code>null</code>.</p>
+<blockquote>
+<p>The advantage of this is that the component will not be mounted multiple times each time the <code>show</code> prop changes which is useful if you are fetching data, setting timers, etc. in <code>componentDidMount</code>.</p>
+</blockquote>
+<pre><code class="lang-js"><span class="hljs-comment">// MyComponent.js</span>
+<span class="hljs-keyword">const</span> MyComponent = ({ show }) =&gt; {
+  <span class="hljs-keyword">if</span> (show) {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+};
+
+<span class="hljs-comment">// SomeOtherComponent.js</span>
+...
+return (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Conditional rendering<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{someCondition}</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+)
+</span></code></pre>
+<h3 id="hide-your-component-using-css">Hide your component using CSS</h3>
+<p>A final way is to simply use CSS to hide your component. This also has the advantage of keeping your component mounted.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// MyComponent.js</span>
+<span class="hljs-keyword">const</span> MyComponent = ({ show }) =&gt; {
+  <span class="hljs-keyword">const</span> style = {
+    display: show ? <span class="hljs-string">&quot;block&quot;</span> : <span class="hljs-string">&quot;none&quot;</span>
+  };
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
+};
+
+<span class="hljs-comment">// SomeOtherComponent.js</span>
+...
+return (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Conditional rendering<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{someCondition}</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+)
+</span></code></pre>
+<h2 id="arrays">Arrays</h2>
+<p>When dealing with arrays of JavaScript objects you can use <code>Array.prototype.map</code> to map from array elements to React components. This is a very common pattern.</p>
+<p>The following example shows a component that is rendering an array of stores by mapping each array entry to a new <code>&lt;li&gt;</code> component.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> { arrayOf, shape, number, string } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">const</span> StoreList = ({ stores }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    {stores.map(store =&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{store.id}</span>&gt;</span>
+        {store.name}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    )}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>;
+
+StoreList.propTypes = {
+  stores: arrayOf(
+    shape({
+      id: number.isRequired,
+      name: string.isRequired
+    }).isRequired
+  )
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> StoreList;
+</code></pre>
+<h3 id="keys">Keys</h3>
+<p>Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:</p>
+<pre><code class="lang-js">&lt;li key={store.id}&gt;{store.name}&lt;/li&gt;
+</code></pre>
+<blockquote>
+<p>Avoid using array indexes if array items can reorder.</p>
+</blockquote>
+<pre><code class="lang-js">stores.map((store, index) =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{index}</span>&gt;</span>{store.name}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+</code></pre>
+<h2 id="writing-components">Writing Components</h2>
+<p><a href="https://codesandbox.io/s/qly8Wqk0" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Writing Components"></a></p>
+<p>For this section we will use an example of a simple button component but the technique is the same no matter what sort of component you are developing.</p>
+<h3 id="designing-a-button-component">Designing a Button component</h3>
+<p>At first our button is very simple:</p>
+<pre><code class="lang-js">&lt;Button text=<span class="hljs-string">&quot;Click me&quot;</span> /&gt;
+
+<span class="hljs-keyword">const</span> Button = ({ text }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn&quot;</span>&gt;</span>
+    {text}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+</code></pre>
+<h3 id="more-requirements">More requirements</h3>
+<p>Now we need support to render an icon:</p>
+<pre><code class="lang-js">&lt;Button text=<span class="hljs-string">&quot;Click me!&quot;</span> iconName=<span class="hljs-string">&quot;paper-plane-o&quot;</span> /&gt;
+
+<span class="hljs-keyword">const</span> Button = ({ text, iconName }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{&quot;fa</span> <span class="hljs-attr">fa-</span>&quot; + <span class="hljs-attr">iconName</span>} /&gt;</span>
+    {&quot; &quot; + text}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>;
+</span></code></pre>
+<h3 id="even-more-requirements">Even more requirements!</h3>
+<p>Now the button needs text formatting, icon positioning and icon size support. <strong>The code is getting complicated</strong>.</p>
+<pre><code class="lang-js">&lt;Button text=<span class="hljs-string">&quot;Click me&quot;</span> textStyle=<span class="hljs-string">&quot;bold&quot;</span> iconName=<span class="hljs-string">&quot;paper-plane-o&quot;</span> iconPosition=<span class="hljs-string">&quot;top&quot;</span> iconSize=<span class="hljs-string">&quot;2x&quot;</span> /&gt;
+
+<span class="hljs-keyword">const</span> Button = props =&gt; {
+  <span class="hljs-keyword">const</span> icon =
+    props.iconName &amp;&amp;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span>
+      <span class="hljs-attr">className</span>=<span class="hljs-string">{classnames(&quot;fa</span> <span class="hljs-attr">fa-</span>&quot; + <span class="hljs-attr">props.iconName</span>, {
+        [&quot;<span class="hljs-attr">fa-</span>&quot; + <span class="hljs-attr">props.iconSize</span>]<span class="hljs-attr">:</span> <span class="hljs-attr">props.iconSize</span>
+      })}
+    /&gt;</span>;
+
+  return (
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn&quot;</span>&gt;</span>
+      {icon &amp;&amp;
+        (props.iconPosition === &quot;top&quot;
+          ? <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+              {icon}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          : <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+              {icon + &quot; &quot;}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>)}
+      {props.textStyle === &quot;bold&quot;
+        ? <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>
+            {props.text}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+        : <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+            {props.text}
+          <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  );
+};
+</span></code></pre>
+<p>It is clear we cannot continue designing the component in this way for long before it becomes unmanageable.</p>
+<h3 id="composition-to-the-rescue">Composition to the rescue</h3>
+<p>Instead of using lots of props and a single complicated <code>render</code> method split the component into smaller chunks and use composition to render it instead.</p>
+<pre><code class="lang-js">&lt;Button&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">FontAwesome</span>
+    <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;paper-plane-o&quot;</span>
+    <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;2x&quot;</span>
+    <span class="hljs-attr">block</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Click me<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span>
+
+<span class="hljs-keyword">const</span> Button = ({ children }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;btn&quot;</span>&gt;</span>
+    {children}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;
+
+<span class="hljs-keyword">const</span> FontAwesome = ({ name, size, block }) =&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span>
+    <span class="hljs-attr">className</span>=<span class="hljs-string">{classnames(&quot;fa&quot;,</span> &quot;<span class="hljs-attr">fa-</span>&quot; + <span class="hljs-attr">name</span>, {
+      [&quot;<span class="hljs-attr">fa-</span>&quot; + <span class="hljs-attr">size</span>]<span class="hljs-attr">:</span> <span class="hljs-attr">size</span>,
+      [&quot;<span class="hljs-attr">center-block</span>&quot;]<span class="hljs-attr">:</span> <span class="hljs-attr">block</span>
+    })}
+  /&gt;</span>;
+</span></code></pre>
+<p>This takes advantage of the special <code>children</code> prop which is the cornerstone of composition using React.</p>
+<h3 id="summary">Summary</h3>
+<p>You might need composition when:</p>
+<ul>
+<li>There are too many props</li>
+<li>There are props to target a specific part of the component (iconName, iconPosition, iconSize, etc.)</li>
+<li>There are props which are directly copied into the inner markup</li>
+<li>There are props which take a complex model object or an array</li>
+</ul>
+<h2 id="unit-testing">Unit Testing</h2>
+<p>Testing should be simple!</p>
+<ul>
+<li>React components are easy to test.</li>
+<li>Presentational components (stateless functional components) should be treated as pure functions.</li>
+<li>Two common testing patterns are:<ul>
+<li>DOM testing<ul>
+<li>Find DOM nodes, simulate events</li>
+</ul>
+</li>
+<li>Snapshot testing<ul>
+<li>Compares files of JSON output</li>
+<li>Show the diff</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="snapshot-testing">Snapshot testing</h3>
+<p>Snapshot testing is a feature of <strong>Jest</strong> that can be used to test <em>any</em> JavaScript object. And thanks to a package called <code>react-test-renderer</code> you can convert a React component to an object to use with snapshot testing.</p>
+<p>For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> renderer <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-test-renderer&quot;</span>;
+<span class="hljs-keyword">import</span> IPAddress <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../IPAddress&quot;</span>;
+
+it(<span class="hljs-string">&quot;renders&quot;</span>, () =&gt; {
+  <span class="hljs-keyword">const</span> component = renderer.create(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">IPAddress</span> <span class="hljs-attr">ip</span>=<span class="hljs-string">&quot;127.0.0.1&quot;</span> /&gt;</span>);
+  expect(component).toMatchSnapshot();
+});
+</span></code></pre>
+<p>When the test runs for the first time a special snapshot file is created in a sub-folder containing the JSON output of the render. The next time you run the test it generates new output and compares it with the snapshot: if there are any differences then the test has failed and you are presented with the object diff. At this point you can decide to regenerate the snapshot.</p>
+<h3 id="dom-testing">DOM testing</h3>
+<p>Alternatively you can render your components into a in-memory DOM (<code>jsdom</code>).</p>
+<ul>
+<li>Use <code>react-dom/test-utils</code> or <code>enzyme</code></li>
+<li>Find DOM nodes and check attributes</li>
+<li>Simulate events</li>
+<li>Mock event handlers</li>
+</ul>
+<blockquote>
+<p>Note that this does not work with stateless functional components unless you wrap them with a class (you can use a simple HOC for this.)</p>
+</blockquote>
+<p>For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> Greeting <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../Greeting&quot;</span>;
+<span class="hljs-keyword">import</span> ReactTestUtils <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-dom/test-utils&quot;</span>;
+
+it(<span class="hljs-string">&quot;renders&quot;</span>, () =&gt; {
+  <span class="hljs-keyword">const</span> onClick = jest.fn();
+  <span class="hljs-keyword">const</span> instance = ReactTestUtils.renderIntoDocument(
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Greeting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;The name&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span> /&gt;</span>
+  );
+  const h1 = ReactTestUtils.findRenderedDOMComponentWithTag(instance, &quot;h1&quot;);
+  ReactTestUtils.Simulate.click(h1);
+  expect(onClick).toHaveBeenCalled();
+});
+</span></code></pre>
+<p>In this example we use <code>ReactTestUtils</code> to render the component, look for the <code>&lt;h1&gt;</code> tag and simulate a click event. We then check that our <code>onClick</code> prop was called.</p>
+<h4 id="wrapping-stateless-functional-components-for-reacttestutils">Wrapping stateless functional components for <code>ReactTestUtils</code></h4>
+<p><code>ReactTestUtils</code> does not play well with stateless functional components. To fix this simply wrap your component with a class when testing. You can use an HOC for this in your project:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> withClass = Component =&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    render() {
+      <span class="hljs-keyword">return</span> &lt;Component {...this.props} /&gt;;
+    }
+  };
+};
+
+const Component = withClass(Greeting);
+const instance = ReactTestUtils.renderIntoDocument(
+  &lt;Component name=&quot;The name&quot; onClick={onClick} /&gt;
+);
+</code></pre>
+<h2 id="state">State</h2>
+<h3 id="state-updates-may-be-asynchronous">State updates may be asynchronous!</h3>
+<p>React may batch multiple&#xC3;&#x201A; <code>setState()</code>&#xC3;&#x201A; calls into a single update for performance.</p>
+<p>Because&#xC3;&#x201A; <code>this.props</code>&#xC3;&#x201A; and&#xC3;&#x201A; <code>this.state</code>&#xC3;&#x201A; may be updated asynchronously, you should not rely on their values for calculating the next state.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Wrong</span>
+<span class="hljs-keyword">this</span>.setState({
+  counter: <span class="hljs-keyword">this</span>.state.counter + <span class="hljs-keyword">this</span>.props.increment
+});
+</code></pre>
+<p>Instead, you can use the <strong>function version of <code>setState</code></strong>.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Correct</span>
+<span class="hljs-keyword">this</span>.setState((prevState, props) =&gt; ({
+  counter: prevState.counter + props.increment
+}));
+</code></pre>
+<p>Always use this version of <code>setState</code> if you need access to the previous state or props.</p>
+<h4 id="state-update-functions-can-be-extracted-and-tested">State update functions can be extracted and tested</h4>
+<p>Another benefit of using the function version of <code>setState</code> is you can extract them from your class, turn them into <strong>thunks</strong> and add tests for them. If you stick to using immutable data for your state then the update functions should be pure which makes them even easier to test. You can even share state update functions amongst your components.</p>
+<p>For example:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Stores.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> addStore = (id, name) =&gt; prevState =&gt; ({
+  stores: [...prevState.stores, { id, name }]
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Stores</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  state = { stores: [] };
+
+  onAddStore = () =&gt; {
+    <span class="hljs-keyword">this</span>.setState(addStore(<span class="hljs-string">&quot;ID&quot;</span>, <span class="hljs-string">&quot;NEW STORE NAME&quot;</span>));
+  }
+  ...
+}
+
+<span class="hljs-comment">// Stores.test.js</span>
+<span class="hljs-keyword">import</span> { addStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./Stores&quot;</span>;
+
+it(<span class="hljs-string">&quot;adds a store to the state&quot;</span>, () =&gt; {
+  <span class="hljs-keyword">const</span> prevState = {
+    stores: [
+      {
+        id: <span class="hljs-string">&quot;1&quot;</span>,
+        name: <span class="hljs-string">&quot;Store 1&quot;</span>
+      },
+      {
+        id: <span class="hljs-string">&quot;2&quot;</span>,
+        name: <span class="hljs-string">&quot;Store 2&quot;</span>
+      }
+    ]
+  }
+  expect(addStore(<span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-string">&quot;Store 3&quot;</span>)(prevState)).toMatchSnapshot();
+});
+</code></pre>
+<h3 id="immutable-data">Immutable data</h3>
+<ul>
+<li>React tends to favour functional programming paradigms</li>
+<li>Mutable data can often be a source of bugs and unintended side effects</li>
+<li>Using immutable data can simplify testing</li>
+<li>Redux relies on immutable state to work correctly</li>
+<li>You don&apos;t necessarily need ImmutableJS: ES6 will usually suffice</li>
+<li>Immutable data can be used alongside <code>React.PureComponent</code> for a very simple performance boost</li>
+</ul>
+<h4 id="immutable-arrays">Immutable arrays</h4>
+<p><a href="https://codesandbox.io/s/D9mx04lQA" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Immutable Arrays"></a></p>
+<p>Here is an example of using <code>Array.prototype.map</code> to clone an array and modify a single element:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">this</span>.setState(prevState =&gt; ({
+  items: prevState.items.map(item =&gt; {
+    <span class="hljs-keyword">if</span> (item.id === idToFind) {
+      <span class="hljs-keyword">return</span> { ...item, toggled: !item.toggled };
+    }
+    <span class="hljs-keyword">return</span> item;
+  })
+}));
+</code></pre>
+<p>You can make a shallow copy of an array and add a new element at the same time using the <strong>array spread operator</strong>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">this</span>.setState(prevState =&gt; ({
+  items: [...prevState.items, { id: <span class="hljs-string">&quot;3&quot;</span>, name: <span class="hljs-string">&quot;New store&quot;</span> }]
+}));
+</code></pre>
+<p>You can remove elements from an array using <code>Array.prototype.slice</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">this</span>.setState(prevState =&gt; ({
+  <span class="hljs-comment">// Remove the first element</span>
+  items: prevState.items.slice(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+}));
+</code></pre>
+<h2 id="props">Props</h2>
+<h3 id="destructuring">Destructuring</h3>
+<p>You can increase code readability be destructuring props. For example:</p>
+<pre><code class="lang-js">render() {
+  <span class="hljs-keyword">const</span> { name, email } = <span class="hljs-keyword">this</span>.props;
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{email}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )
+}
+</code></pre>
+<h3 id="dont-pass-on-unknown-props">Don&apos;t pass on unknown props</h3>
+<p>If you are wrapping components with another do not pass down any props that the wrapped component does not know about. This will generate a console warning in the browser. For example, this is wrong:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> Input = props =&gt; {
+  <span class="hljs-keyword">const</span> type = props.isNumeric ? <span class="hljs-string">&quot;number&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>;
+  <span class="hljs-comment">// &lt;input&gt; does not know about isNumeric</span>
+  <span class="hljs-comment">// This will generate a console warning</span>
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> {<span class="hljs-attr">...props</span>} <span class="hljs-attr">type</span>=<span class="hljs-string">{type}</span> /&gt;</span>;
+};
+
+Input.propTypes = {
+  isNumeric: PropTypes.bool
+};
+</span></code></pre>
+<p>To fix this you can use the <strong>object spread operator</strong> to extract the props you care about and add the remaining ones to a single variable. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> Input = props =&gt; {
+  <span class="hljs-keyword">const</span> { isNumeric, ...other } = props;
+  <span class="hljs-keyword">const</span> type = isNumeric ? <span class="hljs-string">&quot;number&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>;
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> {<span class="hljs-attr">...other</span>} <span class="hljs-attr">type</span>=<span class="hljs-string">{type}</span> /&gt;</span>;
+};
+
+Input.propTypes = {
+  isNumeric: PropTypes.bool
+};
+</span></code></pre>
+<h2 id="pure-components">Pure Components</h2>
+<blockquote>
+<p>Premature optimization is the root of all evil.</p>
+</blockquote>
+<p>Most of the time you are probably not going to worry about performance but there are times when you might to avoid potentially costly <code>render</code>s and this is where <code>React.PureComponent</code> can help.</p>
+<p>When React needs to reconcile the virtual DOM it will call your component <code>render</code> method and compare it with an in-memory copy. If anything has changed then the real DOM is updated. Usually this is fast but if your <code>render</code> function is slow (perhaps it renders many components) then there could be a delay while reconciliation takes place.</p>
+<p>However, there is a React lifecycle method you can override called <code>shouldComponentUpdate</code> and if you return <code>false</code> from this then your <code>render</code> method <strong>will not be called</strong>.</p>
+<p>To make this easier to manage you can derive your component class from <code>React.PureComponent</code> which overrides <code>shouldComponentUpdate</code> and performs a simple (and fast) value comparison of your props and state: if there are no changes then the function returns <code>false</code> and no render will occur.</p>
+<p>So if your <code>render</code> method renders exactly the same result given the same props and state then you can use <code>React.PureComponent</code> for a potential performance boost.</p>
+<blockquote>
+<p>React performs a <em>value</em> comparison of your props and state and <strong>not</strong> a deep object comparison. Therefore you should use immutable data for all props and state to ensure this comparison works as expected: otherwise your component may not render when you expect it to.</p>
+</blockquote>
+<p><a href="https://codesandbox.io/s/qjnj3n2Ly" target="_blank"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit Pure Components"></a></p>
+<p>For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;prop-types&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">PureComponent</span> </span>{
+  <span class="hljs-keyword">static</span> propTypes = {
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        text: PropTypes.text
+      })
+    )
+  };
+
+  render() {
+    <span class="hljs-comment">// Only called if the props have changed</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">List</span>&gt;</span>
+        {this.props.items.map(item =&gt;
+          <span class="hljs-tag">&lt;<span class="hljs-name">ListItem</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{item.id}</span> <span class="hljs-attr">primaryText</span>=<span class="hljs-string">{item.text}</span> /&gt;</span>
+        )}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">List</span>&gt;</span>
+    );
+  }
+}
+</span></code></pre>
+<p>If the <code>items</code> prop changes (is replaced with a new copy of the data) then the component will render.</p>
+<h2 id="project-structure">Project Structure</h2>
+<p>There are numerous ways to structure your React project. One common layout for components:</p>
+<ul>
+<li>Components are located in <code>src/components/ComponentName.js</code>.</li>
+<li>Component-specific CSS is located in <code>src/components/ComponentName.css</code>.</li>
+<li>Component tests are located in <code>src/components/__tests__/ComponentName.test.js</code>.</li>
+<li>Component stories are located in <code>src/components/__stories__/ComponentName.stories.js</code></li>
+<li>React Styleguidist component examples (if applicable) are located in <code>src/components/__examples__/ComponentName.md</code></li>
+</ul>
+<p>If you&apos;re using <code>redux</code>:</p>
+<ul>
+<li>Code to initialise your store is located in <code>src/store.js</code></li>
+<li>Reducers are located in <code>src/reducers</code></li>
+<li>Action creators are located in <code>src/actions</code></li>
+<li>Selectors are located in <code>src/selectors</code></li>
+<li>Action constants are located in <code>src/constants/actions.js</code></li>
+</ul>
+<p>Try and limit the number of files in the root <code>src</code> folder but be careful not to overdo your folder structure. There is nothing wrong with lots of files in one folder (Facebook use a monorepo: they have over 30,000 components in a single folder!)</p>
+<p>An example layout may look like this:</p>
+<pre><code>src\
+  index.js
+  App.js
+  setupTests.js
+  components\
+    __tests__\
+      Button.test.js
+    __stories__\
+      Button.stories.js
+    Button.js
+    Button.css
+  containers\
+    __tests__\
+      MainPage.test.js
+    MainPage.js
+  utils\
+    __tests__\
+      sharedStuff.test.js
+    sharedStuff.js
+    testUtils.js
+</code></pre><p>Another layout involves a separate folder with each component containing the source code, CSS, tests, stories and any other component-specific files. For this to be manageable you need to also add an <code>index.js</code> that imports the component and this is not recommended for beginners.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>It&apos;s just JavaScript.</li>
+<li>Use functional programming patterns and techniques where possible.</li>
+<li>Use containers/presentational components.</li>
+<li>Always declare your prop types.</li>
+<li>Take advantage of ES6 and ESNext.</li>
+<li>Use immutable data.</li>
+<li>Use snapshot testing.</li>
+<li>Use the function form of <code>setState</code> if you need access to the previous state or props.</li>
+<li>Favour small components and composition when building your UI.</li>
+<li>Don&apos;t ignore console warnings.</li>
+</ul>
+
+
+                                </section>
+
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+
+        </div>
+        <div class="no-results">
+
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+
+            </div>
+
+
+
+
+
+
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"dir":"ltr"},"config":{"gitbook":"3.2.3","theme":"default","variables":{},"plugins":["scripts","livereload"],"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"scripts":{"files":["./scripts/main.js"]},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2017-09-25T04:49:46.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-09-25T04:51:16.685Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+
+
+        <script src="gitbook/gitbook-plugin-scripts/1ae2000444a19070222d9267d917734d-main.js"></script>
+
+
+
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+
+
+
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+
+
+
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+
+
+
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+
+
+
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+
+
+
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+
+
+
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+
+
+
+    </body>
+</html>
